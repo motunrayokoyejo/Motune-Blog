@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+<title> Blog Posts </title>
+{% endblock %}
+
+{% block body %} 
+<div>
+        <h1 style="display:inline">All Posts</h1>
+        <a style="display:inline" class="btn btn-success float-right" href="/posts/new" >+ New Post</a>
+    </div>
+        <hr>
+  
+        {% for post in posts %}
+         <h2>{{ post.title }}</h2>
+
+         {% if post.author %}
+         <h3>By: {{ post.author }}</h3>
+         {% else %}
+         <h3> Unknown Author </h3>
+         {% endif %}
+
+         <p> {{ post.content }} </p>
+         <a class="btn btn-danger" href="/posts/delete/{{post.id}}"> Delete </a>
+         <a class="btn btn-primary" href="/posts/edit-blog/{{post.id}}"> Edit Blog</a>
+         <hr>
+         {% endfor %}
+{% endblock %}
